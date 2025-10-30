@@ -5,16 +5,18 @@ import styles from "./page.module.scss"
 import clsx from "clsx"
 import usePinManager from "@/hooks/PinManager"
 import {login} from "@/services/auth/auth.service";
+import {useUserStore} from "@/store/useUserStore";
 
 export default function Auth() {
     const [uniqueNumbers, setUniqueNumbers] = useState<number[]>([])
     const manager = usePinManager(setUniqueNumbers);
+    const { setUser } = useUserStore();
 
     const handleLogin = async (code: number[]) => {
         if (code.length !== 6) return;
         try{
             const response = await login(Number(code.join("")));
-            console.log(response);
+            setUser(response.employee)
         } catch (error){
             console.error(error)
         }
