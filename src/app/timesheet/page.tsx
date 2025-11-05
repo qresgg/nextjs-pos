@@ -1,5 +1,5 @@
 'use client'
-import {useUserStore} from "@/store/useUserStore";
+import {useUserStore} from "@/store/user/useUserStore";
 import styles from "./page.module.scss"
 
 export default function Timesheet () {

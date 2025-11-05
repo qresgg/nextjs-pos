@@ -5,7 +5,7 @@ import styles from "./page.module.scss"
 import clsx from "clsx"
 import usePinManager from "@/hooks/PinManager"
 import {login} from "@/services/auth/auth.service";
-import {useUserStore} from "@/store/useUserStore";
+import {useUserStore} from "@/store/user/useUserStore";
 
 export default function Auth() {
     const [uniqueNumbers, setUniqueNumbers] = useState<number[]>([])
