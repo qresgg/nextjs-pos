@@ -10,4 +10,10 @@ export const userData = {
     // update(id: string, data){
     //
     // }
+
+    async getClockTime(id: string){
+        const res = await api.get(`staff/clockTime/${id}`);
+        if(res.status !== 200) throw new Error("Failed to fetch clock time");
+        return res.data;
+    }
 }

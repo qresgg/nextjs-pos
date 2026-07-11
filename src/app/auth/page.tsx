@@ -7,7 +7,7 @@ import usePinManager from "@/hooks/PinManager"
 import {login} from "@/services/auth/auth.service";
 import {useUserStore} from "@/store/user/useUserStore";
 
-export default function Auth() {
+export default function Page() {
     const [uniqueNumbers, setUniqueNumbers] = useState<number[]>([])
     const manager = usePinManager(setUniqueNumbers);
     const { setUser } = useUserStore();

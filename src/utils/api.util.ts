@@ -31,12 +31,37 @@ const refreshApi = axios.create({
     },
 });
 
+<<<<<<< Updated upstream
 let refreshPromise: Promise<string> | null = null;
 
 api.interceptors.request.use(
     (config: InternalAxiosRequestConfig) => {
         if (typeof window === "undefined") {
             return config;
+=======
+        if (originalRequest.url.includes('/auth/refresh')) {
+            return Promise.reject(error);
+        }
+
+        if (error.response?.status === 401 && !originalRequest._retry) {
+            originalRequest._retry = true;
+
+            try {
+                const { data } = await api.post('/auth/refresh');
+
+                const newToken = data.accessToken || data;
+
+                localStorage.setItem('accessToken', newToken);
+
+                api.defaults.headers.common['Authorization'] = `Bearer ${newToken}`;
+                originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
+
+                return api(originalRequest);
+            } catch (err) {
+                console.error('Refresh token invalid, need login');
+                return Promise.reject(err);
+            }
+>>>>>>> Stashed changes
         }
 
         const accessToken = localStorage.getItem("accessToken");
@@ -50,6 +75,7 @@ api.interceptors.request.use(
     (error) => Promise.reject(error),
 );
 
+<<<<<<< Updated upstream
 api.interceptors.response.use(
     (response) => response,
 
@@ -120,4 +146,6 @@ api.interceptors.response.use(
     },
 );
 
+=======
+>>>>>>> Stashed changes
 export default api;
