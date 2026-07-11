@@ -12,3 +12,14 @@ export const login = async (code: number) => {
         throw error;
     }
 }
+
+export const logout = async (id: string) => {
+    try{
+        console.log("CL LOGOUT")
+        const res = await api.post("/auth/logout", { id });
+        return res;
+    } catch (error){
+        console.log(error);
+        throw error;
+    }
+}
