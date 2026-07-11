@@ -5,8 +5,8 @@ import {userData} from "@/services/data/userData.service";
 function getAccessToken() {
     return localStorage.getItem("access_token");
 }
-function getUserData(){
-    return userData.getByToken();
+async function getUserData(){
+    return await userData.getByToken()
 }
 
 export const useUserStore = create<UserStore>((set) => ({
@@ -18,7 +18,7 @@ export const useUserStore = create<UserStore>((set) => ({
 
     fetchUser: async () => {
         set({ isLoading: true });
-        const user = await userData.getByToken();
+        const user = await getUserData();
         set({ user, isLoading: false });
     },
 }))

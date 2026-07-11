@@ -1,3 +1,4 @@
+// @ts-ignore
 import React, { useRef } from 'react'
 import PinManager from '@/utils/pinManager.util'
 
@@ -5,15 +6,15 @@ export default function usePinManager( setUniqueNumbers: React.Dispatch<React.Se
     const manager = useRef(new PinManager()).current;
 
     const addWithIndex = (index: number) => {
-        setUniqueNumbers((prev) => manager.addNumber(prev, index + 1))
+        setUniqueNumbers((prev: any) => manager.addNumber(prev, index + 1))
     }
 
     const addZero = () => {
-        setUniqueNumbers((prev) => manager.addNumber(prev, 0))
+        setUniqueNumbers((prev: any) => manager.addNumber(prev, 0))
     }
 
     const removeLast = () => {
-        setUniqueNumbers((prev) => manager.removeLast(prev))
+        setUniqueNumbers((prev: any) => manager.removeLast(prev))
     }
 
     const deleteAll = () => {
